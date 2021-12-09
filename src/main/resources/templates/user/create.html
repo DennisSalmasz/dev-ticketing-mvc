@@ -32,12 +32,12 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{user/create}" method="post">
+                                    <form class="needs-validation" novalidate th:action="@{user/create}" method="post" th:object="${user}">
                                         <div class="row">
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label for="firstName" class="col-form-label">First name</label>
-                                                    <input id="firstName" type="text" placeholder="first name" class="form-control" required>
+                                                    <input id="firstName" type="text" placeholder="first name" th:field="*{firstName}" class="form-control" required>
                                                     <div class="invalid-feedback">Please enter first name.</div>
                                                 </div>
                                             </div>
@@ -45,7 +45,7 @@
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label for="lastName" class="col-form-label">Last name</label>
-                                                    <input id="lastName" type="text" placeholder="last name" class="form-control" required>
+                                                    <input id="lastName" type="text" placeholder="last name" th:field="*{lastName}" class="form-control" required>
                                                     <div class="invalid-feedback">Please enter last name.</div>
                                                 </div>
                                             </div>
@@ -55,7 +55,7 @@
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label for="emailaddress" class="col-form-label">Email Address</label>
-                                                    <input id="emailaddress" type="text" placeholder="email address" class="form-control" required>
+                                                    <input id="emailaddress" type="text" placeholder="email address" th:field="*{userName}" class="form-control" required>
                                                     <div class="invalid-feedback">Please enter email.</div>
                                                 </div>
                                             </div>
@@ -63,7 +63,7 @@
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label for="phonenumber" class="col-form-label">Phone Number</label>
-                                                    <input id="phonenumber" type="tel" placeholder="phone number" class="form-control" pattern="^\d{10}$" required>
+                                                    <input id="phonenumber" type="tel" placeholder="phone number" th:field="*{phone}" class="form-control" pattern="^\d{10}$" required>
                                                     <div class="invalid-feedback">Please enter 10 digit mobile number.</div>
                                                 </div>
                                             </div>
@@ -73,7 +73,7 @@
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label for="password" class="col-form-label">Password</label>
-                                                    <input id="password" type="text" placeholder="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" required>
+                                                    <input id="password" type="text" placeholder="password" th:field="*{passWord}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" required>
                                                     <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters.</div>
                                                 </div>
                                             </div>
@@ -81,7 +81,7 @@
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label for="repassword" class="col-form-label">Password</label>
-                                                    <input id="repassword" type="text" placeholder="confirm your password" class="form-control"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" required>
+                                                    <input id="repassword" type="text" placeholder="confirm your password" th:field="*{passWord}" class="form-control"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" required>
                                                     <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters.</div>
                                                 </div>
                                             </div>
@@ -92,10 +92,10 @@
                                                 <div class="form-group">
                                                     <label>Gender</label><br>
                                                     <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline" checked="" class="custom-control-input"><span class="custom-control-label">Male</span>
+                                                        <input type="radio" name="radio-inline" checked="" th:field="*{gender}" th:value="Male" class="custom-control-input"><span class="custom-control-label">Male</span>
                                                     </label>
                                                     <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline" checked="" class="custom-control-input"><span class="custom-control-label">Female</span>
+                                                        <input type="radio" name="radio-inline" checked="" th:field="*{gender}" th:value="Female" class="custom-control-input"><span class="custom-control-label">Female</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -103,7 +103,11 @@
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
-                                                    <select name="roleid" id="roleid" class="custom-select" required="required">
+                                                    <select name="roleid" id="roleid" th:field="*{role}" class="custom-select" required="required">
+                                                        <option th:value=" ''" th:text="Select"></option>
+                                                        <option th:each="role : ${roles}"
+
+
                                                         <option value="select" selected="selected">Select</option>
                                                         <option value="select">Admin</option>
                                                         <option value="select">Manager</option>
