@@ -22,11 +22,16 @@ public abstract class AbstractMapService<T, ID> {
         return new ArrayList<>(map.values());
     }
 
-    void delete(T Object){
-        map.entrySet().removeIf(entry -> entry.getValue().equals(Object));
+    void delete(T object){
+        map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
 
     void deleteById(ID id){
         map.remove(id);
+    }
+
+    void update(ID id, T object){
+        map.entrySet().removeIf(entry -> entry.getValue().equals(object));
+        map.put(id, object);
     }
 }
