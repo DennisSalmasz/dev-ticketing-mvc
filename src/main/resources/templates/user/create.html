@@ -103,15 +103,9 @@
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
-                                                    <select name="roleid" id="roleid" th:field="*{role}" class="custom-select" required="required">
-                                                        <option th:value=" ''" th:text="Select"></option>
-                                                        <option th:each="role : ${roles}"
-
-
-                                                        <option value="select" selected="selected">Select</option>
-                                                        <option value="select">Admin</option>
-                                                        <option value="select">Manager</option>
-                                                        <option value="select">Employee</option>
+                                                    <select th:field="*{role}" class="custom-select" required="required">
+                                                        <option th:value="''" th:text="Select"></option>
+                                                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.description}"></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -154,48 +148,28 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">Name</th>
-                                                <th scope="col">E-Mail(username)</th>
+                                                <th scope="col">E-Mail - Username</th>
                                                 <th scope="col">Gender</th>
                                                 <th scope="col">Phone</th>
                                                 <th scope="col">Role</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                             </thead>
+
                                             <tbody>
-                                            <tr>
-                                                <td>Danny</td>
-                                                <td>danny@collgroup.com</td>
-                                                <td>Male</td>
-                                                <td>1234567890</td>
-                                                <td>Employee</td>
-                                                <td class="actions">
-                                                    <a href=""><button type="button" class="btn btn-warning btn-sm">Update</button></a>
-                                                    <a href="" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Danny</td>
-                                                <td>danny@collgroup.com</td>
-                                                <td>Male</td>
-                                                <td>1234567890</td>
-                                                <td>Employee</td>
-                                                <td class="actions">
-                                                    <a href=""><button type="button" class="btn btn-warning btn-sm">Update</button></a>
-                                                    <a href="" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Danny</td>
-                                                <td>danny@collgroup.com</td>
-                                                <td>Male</td>
-                                                <td>1234567890</td>
-                                                <td>Employee</td>
+                                            <tr th:each="user : ${users}">
+                                                <td th:text="${user.firstName + ' ' + user.lastName}"></td>
+                                                <td th:text="${user.userName}"></td>
+                                                <td th:text="${user.gender}"></td>
+                                                <td th:text="${user.phone}"></td>
+                                                <td th:text="${user.role.description}"></td>
                                                 <td class="actions">
                                                     <a href=""><button type="button" class="btn btn-warning btn-sm">Update</button></a>
                                                     <a href="" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
                                                 </td>
                                             </tr>
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>
