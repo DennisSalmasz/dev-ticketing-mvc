@@ -32,7 +32,7 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{user/create}" method="post" th:object="${user}">
+                                    <form class="needs-validation" novalidate th:action="@{create}" method="post" th:object="${user}">
                                         <div class="row">
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
@@ -92,10 +92,10 @@
                                                 <div class="form-group">
                                                     <label>Gender</label><br>
                                                     <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline" checked="" th:field="*{gender}" th:value="Male" class="custom-control-input"><span class="custom-control-label">Male</span>
+                                                        <input type="radio" name="radio-inline" checked="" th:field="*{gender}" th:value="MALE" class="custom-control-input"><span class="custom-control-label">Male</span>
                                                     </label>
                                                     <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline" checked="" th:field="*{gender}" th:value="Female" class="custom-control-input"><span class="custom-control-label">Female</span>
+                                                        <input type="radio" name="radio-inline" checked="" th:field="*{gender}" th:value="FEMALE" class="custom-control-input"><span class="custom-control-label">Female</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -103,8 +103,8 @@
                                             <div class="col-md-6 mb-6">
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
-                                                    <select th:field="*{role}" class="custom-select" required="required">
-                                                        <option th:value="''" th:text="Select"></option>
+                                                    <select th:field="*{role.id}" class="custom-select" required="required">
+                                                        <option th:value=" ''" th:text="Select"></option>
                                                         <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.description}"></option>
                                                     </select>
                                                 </div>
