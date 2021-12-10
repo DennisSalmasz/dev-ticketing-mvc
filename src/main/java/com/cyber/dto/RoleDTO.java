@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class RoleDTO {
 
-    private Long id;
+    private Long id; // unique property --- PK in DB!!
     private String description;
 }

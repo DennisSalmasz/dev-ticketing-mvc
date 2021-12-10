@@ -14,7 +14,7 @@ public class UserDTO {
 
     private String firstName;
     private String lastName;
-    private String userName;
+    private String userName; // unique property --- PK in DB!!
     private String passWord;
     private boolean enabled;
     private String phone;
