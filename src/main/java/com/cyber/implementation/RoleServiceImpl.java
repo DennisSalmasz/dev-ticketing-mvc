@@ -1,11 +1,12 @@
 package com.cyber.implementation;
 
 import com.cyber.dto.RoleDTO;
-import com.cyber.dto.UserDTO;
 import com.cyber.service.RoleService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements RoleService {
 
     @Override

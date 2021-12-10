@@ -2,9 +2,11 @@ package com.cyber.implementation;
 
 import com.cyber.dto.UserDTO;
 import com.cyber.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl extends AbstractMapService<UserDTO,String> implements UserService {
 
     //overrides methods in UserService !!
