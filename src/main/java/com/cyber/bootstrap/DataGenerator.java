@@ -1,13 +1,18 @@
 package com.cyber.bootstrap;
 
+import com.cyber.dto.ProjectDTO;
 import com.cyber.dto.RoleDTO;
 import com.cyber.dto.UserDTO;
 import com.cyber.enums.Gender;
+import com.cyber.enums.Status;
+import com.cyber.service.ProjectService;
 import com.cyber.service.RoleService;
 import com.cyber.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataGenerator implements CommandLineRunner {
@@ -15,12 +20,14 @@ public class DataGenerator implements CommandLineRunner {
     // inject through Interface, not impl class!!
     RoleService roleService;
     UserService userService;
+    ProjectService projectService;
 
     //create constructor to autowire - no need @Autowired!!
     @Autowired
-    public DataGenerator(RoleService roleService, UserService userService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
     //whenever we start app, this method first run - to upload dummy data !!
@@ -51,5 +58,13 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user3);
         userService.save(user4);
         userService.save(user5);
+
+        ProjectDTO project1 = new ProjectDTO("Spring MVC","PR001",user1, LocalDate.now(),LocalDate.now().plusDays(25),"Creating Control", Status.OPEN);
+        ProjectDTO project2 = new ProjectDTO("Spring ORM","PR002",user2, LocalDate.now(),LocalDate.now().plusDays(10),"Creating Database", Status.IN_PROGRESS);
+        ProjectDTO project3 = new ProjectDTO("Spring Container","PR003",user1, LocalDate.now(),LocalDate.now().plusDays(32),"Creating Container", Status.UAT_TEST);
+
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
     }
 }
