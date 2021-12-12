@@ -1,6 +1,7 @@
 package com.cyber.implementation;
 
 import com.cyber.dto.ProjectDTO;
+import com.cyber.enums.Status;
 import com.cyber.service.ProjectService;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,11 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> im
     @Override
     public void delete(ProjectDTO object) {
         super.delete(object);
+    }
+
+    @Override
+    public void complete(ProjectDTO project) {
+        project.setProjectStatus(Status.COMPLETE);
+        super.save(project.getProjectCode(), project);
     }
 }
