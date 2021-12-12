@@ -115,7 +115,7 @@
                         <div class="col-md-12">
                             <section class="panel">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">User List</h2>
+                                    <h2 class="panel-title">Project List</h2>
                                 </header>
                                 <div class="panel-body">
                                     <div class="table-responsive">
@@ -138,7 +138,7 @@
                                                 <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
                                                 <td th:text="${project.projectStatus}"></td>
                                                 <td>
-                                                    <a class="btn btn-warning rounded-0">Update</a>
+                                                    <a th:href="@{/project/update/{projectCode}(projectCode=${project.projectCode})}" class="btn btn-warning rounded-0">Update</a>
                                                     <a th:href="@{/project/delete/{projectCode}(projectCode=${project.projectCode})}" class="btn btn-danger rounded-0">Delete</a>
                                                     <a th:href="@{/project/complete/{projectCode}(projectCode=${project.projectCode})}" class="btn btn-info rounded-0">Complete</a>
                                                 </td>
