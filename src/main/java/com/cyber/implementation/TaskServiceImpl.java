@@ -2,9 +2,11 @@ package com.cyber.implementation;
 
 import com.cyber.dto.TaskDTO;
 import com.cyber.service.TaskService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements TaskService {
 
     @Override
