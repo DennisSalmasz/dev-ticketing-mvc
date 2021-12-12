@@ -34,7 +34,7 @@
                                     <!-- ------------------------FORM START----------------------------- -->
                                     <!-- when I click on Save btn, i want to go to project/create with POST method -- so, i give my empty object: project -->
                                     <!-- one form one object -- now i can use project object - so, project object is everywhere in the form, and we can bind data to that object-->
-                                    <form class="needs-validation" novalidate th:action="@{/project/create}" method="post" th:object="${project}">
+                                    <form class="needs-validation" novalidate th:action="@{/project/update/{id}(id=${project.projectCode})}" method="post" th:object="${project}">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
@@ -48,7 +48,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Project Code</label>
-                                                    <input id="projectcode" type="text" placeholder="project code" th:field="*{projectCode}" class="form-control" required>
+                                                    <input id="projectcode" type="text" placeholder="project code" th:field="*{projectCode}" class="form-control" readonly required>
                                                     <div class="invalid-feedback">Please enter project code.</div>
                                                 </div>
                                             </div>
@@ -58,7 +58,6 @@
                                                 <div class="form-group">
                                                     <label>Assigned Manager</label>
                                                     <select th:field="*{assignedManager}" class="custom-select" required="required">
-                                                        <option th:value=" ''" th:text="Select"></option>
                                                         <option th:each="manager : ${managers}" th:value="${manager.userName}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback">Please choose manager</div>
@@ -139,7 +138,7 @@
                                                 <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
                                                 <td th:text="${project.projectStatus}"></td>
                                                 <td>
-                                                    <a th:href="@{/project/update/{projectCode}(projectCode=${project.projectCode})}" class="btn btn-warning rounded-0">Update</a>
+                                                    <a class="btn btn-warning rounded-0">Update</a>
                                                     <a th:href="@{/project/delete/{projectCode}(projectCode=${project.projectCode})}" class="btn btn-danger rounded-0">Delete</a>
                                                     <a th:href="@{/project/complete/{projectCode}(projectCode=${project.projectCode})}" class="btn btn-info rounded-0">Complete</a>
                                                 </td>
