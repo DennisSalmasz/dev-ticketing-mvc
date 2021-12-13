@@ -16,13 +16,12 @@ import java.util.UUID;
 @Setter
 public class TaskDTO {
 
-    private long id;
+    private Long id;
     private ProjectDTO project;
     private UserDTO assignedEmployee;
     private String taskSubject;
     private String taskDetail;
     private Status taskStatus;
-    @DateTimeFormat(pattern = "MM/dd/yyy hh:mm")
     private LocalDate assignedDate;
 
     public TaskDTO(ProjectDTO project, UserDTO assignedEmployee, String taskSubject, String taskDetail, Status taskStatus, LocalDate assignedDate) {
