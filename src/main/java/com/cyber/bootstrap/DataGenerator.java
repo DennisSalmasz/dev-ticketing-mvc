@@ -45,22 +45,14 @@ public class DataGenerator implements CommandLineRunner {
         roleService.save(managerRole);
         roleService.save(employeeRole);
 
-        UserDTO user1 = new UserDTO("John", "Kesy",
-                "john@ticketng.com", "Abc1", true, "7459684532", managerRole, Gender.MALE);
-        UserDTO user5 = new UserDTO("Mike", "Smith",
-                "mike@ticketng.com", "Abc2", true, "7459684532", adminRole, Gender.MALE);
-        UserDTO user2 = new UserDTO("Delisa",
-                "Norre", "delisa@ticketng.com", "123", true, "8567412358", managerRole, Gender.FEMALE);
-        UserDTO user3 = new UserDTO("Craig", "Jark",
-                "craig@ticketng.com", "Abc3", true, "7777775566", employeeRole, Gender.MALE);
-        UserDTO user4 = new UserDTO("Shaun",
-                "Hayns", "shaun@ticketng.com", "Abc4", true, "3256987412", managerRole, Gender.MALE);
-        UserDTO user6 = new UserDTO("Elizebeth",
-                "Loren", "elizebeth@ticketng.com", "Abc4", true, "5306987412", employeeRole, Gender.FEMALE);
-        UserDTO user7 = new UserDTO("Maria",
-                "Ada", "maria@ticketng.com", "Abc4", true, "9996987412", employeeRole, Gender.FEMALE);
-        UserDTO user8 = new UserDTO("Bill",
-                "Matt", "bill@ticketng.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
+        UserDTO user1 = new UserDTO("John","Kesy","john@ticketng.com","Abc1",true,"7459684532",managerRole,Gender.MALE);
+        UserDTO user5 = new UserDTO("Mike","Smith","mike@ticketng.com","Abc2",true,"7459684532",adminRole,Gender.MALE);
+        UserDTO user2 = new UserDTO("Delisa","Norre","delisa@ticketng.com","123",true,"8567412358",managerRole,Gender.FEMALE);
+        UserDTO user3 = new UserDTO("Craig","Jark","craig@ticketng.com", "Abc3", true, "7777775566", employeeRole, Gender.MALE);
+        UserDTO user4 = new UserDTO("Shaun","Hayns", "shaun@ticketng.com", "Abc4", true, "3256987412", managerRole, Gender.MALE);
+        UserDTO user6 = new UserDTO("Elizebeth","Loren", "elizebeth@ticketng.com", "Abc4", true, "5306987412", employeeRole, Gender.FEMALE);
+        UserDTO user7 = new UserDTO("Maria","Ada", "maria@ticketng.com", "Abc4", true, "9996987412", employeeRole, Gender.FEMALE);
+        UserDTO user8 = new UserDTO("Bill","Matt", "bill@ticketng.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
         userService.save(user1);
         userService.save(user2);
         userService.save(user3);
