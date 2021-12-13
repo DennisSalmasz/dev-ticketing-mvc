@@ -1,10 +1,12 @@
 package com.cyber.implementation;
 
 import com.cyber.dto.TaskDTO;
+import com.cyber.dto.UserDTO;
 import com.cyber.service.TaskService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements TaskService {
@@ -42,5 +44,10 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements
     @Override
     public void delete(TaskDTO object) {
         super.delete(object);
+    }
+
+    @Override
+    public List<TaskDTO> findTaskManager(UserDTO manager) {
+        return super.findAll().stream().filter(task -> task.getProject().getAssignedManager().equals(manager)).collect(Collectors.toList());
     }
 }

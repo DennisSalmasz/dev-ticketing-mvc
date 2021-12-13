@@ -1,9 +1,11 @@
 package com.cyber.controller;
 
 import com.cyber.dto.ProjectDTO;
+import com.cyber.dto.TaskDTO;
 import com.cyber.dto.UserDTO;
 import com.cyber.enums.Status;
 import com.cyber.service.ProjectService;
+import com.cyber.service.TaskService;
 import com.cyber.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ public class ProjectController {
     ProjectService projectService;
     @Autowired
     UserService userService; // we just basically put all the users as managers !!
+    @Autowired
+    TaskService taskService;
 
     @GetMapping("/create")
     public String createProject(Model model){
@@ -77,10 +81,30 @@ public class ProjectController {
         UserDTO manager = userService.findById("john@ticketng.com");
 
         //List<ProjectDTO> projects = projectService.findAll();
-        List<ProjectDTO> projects = projectService.findAll().stream().filter(p -> p.getAssignedManager().equals(manager)).collect(Collectors.toList());
+        List<ProjectDTO> projects = getCountedListOfProjectDTO(manager);
         model.addAttribute("projects",projects);
 
         return "manager/project-status";
+    }
+
+    List<ProjectDTO> getCountedListOfProjectDTO(UserDTO manager){
+
+        List<ProjectDTO> list = projectService
+                .findAll()
+                .stream()
+                .filter(p -> p.getAssignedManager().equals(manager))
+                .map(p -> {
+                    List<TaskDTO> taskList = taskService.findTaskManager(manager);
+                    int completeCount = (int) taskList.stream().filter( t -> t.getProject().equals(p) && t.getTaskStatus() == Status.COMPLETE).count();
+                    int incompleteCount = (int) taskList.stream().filter( t -> t.getProject().equals(p) && t.getTaskStatus() != Status.COMPLETE).count();
+
+                    p.setCompleteTaskCount(completeCount);
+                    p.setUnfinishedTaskCount(incompleteCount);
+
+                    return p;
+
+        }).collect(Collectors.toList());
+        return list;
     }
 
 
