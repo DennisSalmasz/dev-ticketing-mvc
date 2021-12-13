@@ -80,7 +80,6 @@ public class ProjectController {
         //I wanna see project belong to John
         UserDTO manager = userService.findById("john@ticketng.com");
 
-        //List<ProjectDTO> projects = projectService.findAll();
         List<ProjectDTO> projects = getCountedListOfProjectDTO(manager);
         model.addAttribute("projects",projects);
 
@@ -99,7 +98,7 @@ public class ProjectController {
                     int incompleteCount = (int) taskList.stream().filter( t -> t.getProject().equals(p) && t.getTaskStatus() != Status.COMPLETE).count();
 
                     p.setCompleteTaskCount(completeCount);
-                    p.setUnfinishedTaskCount(incompleteCount);
+                    p.setIncompleteTaskCount(incompleteCount);
 
                     return p;
 

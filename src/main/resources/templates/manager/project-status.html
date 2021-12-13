@@ -65,7 +65,7 @@
                                                 <th scope="col">Project Name</th>
                                                 <th scope="col">Start/End Date</th>
                                                 <th scope="col">Manager</th>
-                                                <th scope="col">Finished/Unfinished</th>
+                                                <th scope="col">Completed/Uncompleted</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -76,7 +76,7 @@
                                                 <td th:text="${project.projectName}"></td>
                                                 <td th:text="${project.startDate + ' - ' + project.endDate}"></td>
                                                 <td th:text="${project.assignedManager.firstName + ' ' + project.assignedManager.lastName}"></td>
-                                                <td th:text="${project.unfinishedTaskCount + '/' + project.completeTaskCount}"></td>
+                                                <td th:text="${project.incompleteTaskCount + '/' + project.completeTaskCount}"></td>
                                                 <td th:text="${project.projectStatus}"></td>
                                                 <td><a class="btn btn-info rounded-0">Complete</a></td>
                                             </tr>

@@ -29,7 +29,7 @@ public class ProjectDTO {
     private Status projectStatus;
 
     private int completeTaskCount;
-    private int unfinishedTaskCount;
+    private int incompleteTaskCount;
 
     public ProjectDTO(String projectName, String projectCode, UserDTO assignedManager, LocalDate startDate, LocalDate endDate, String projectDetail, Status projectStatus) {
         this.projectName = projectName;
